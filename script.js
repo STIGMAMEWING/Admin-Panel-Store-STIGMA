@@ -40,8 +40,9 @@ async function tambahProduk() {
   const usernameRoblox = document.getElementById("usernameRoblox").value;
   const stok = document.getElementById("stokProduk").value;
   const fotoInput = document.getElementById("fotoProduk");
+  const urlProduk = document.getElementById("urlProduk").value;
 
-  const itemBaru = { nama, harga, deskripsi, usernameRoblox, stok };
+  const itemBaru = { nama, harga, deskripsi, usernameRoblox, stok, urlProduk };
   allData.push(itemBaru);
   renderProduk(allData);
 
@@ -52,7 +53,7 @@ async function tambahProduk() {
         content: "📦 Produk Baru Ditambahkan!",
         embeds: [{
           title: nama,
-          description: `💰 Harga: Rp${harga}\n📜 ${deskripsi || "-"}\n👤 Roblox ID: ${usernameRoblox}\n📦 Stok: ${stok}`,
+          description: `💰 Harga: Rp${harga}\n📜 ${deskripsi || "-"}\n🔗 Buy Now: ${urlProduk}\n👤 Roblox ID: ${usernameRoblox}\n📦 Stok: ${stok}`,
           color: 5814783,
           image: { url: `attachment://${fotoInput.files[0].name}` }
         }]
@@ -63,7 +64,7 @@ async function tambahProduk() {
       await fetch(WEBHOOK_URL, { method: "POST", body: formData });
     } else {
       const payload = {
-        content: `📦 Produk Baru Ditambahkan!\n🪐 Nama: **${nama}**\n💰 Harga: Rp${harga}\n📜 ${deskripsi || "-"}\n👤 Roblox ID: ${usernameRoblox}\n📦 Stok: ${stok}`
+        content: `📦 Produk Baru Ditambahkan!\n🪐 Nama: **${nama}**\n💰 Harga: Rp${harga}\n📜 ${deskripsi || "-"}\n🔗 Buy Now: ${urlProduk}\n👤 Roblox ID: ${usernameRoblox}\n📦 Stok: ${stok}`
       };
       await fetch(WEBHOOK_URL, {
         method: "POST",
